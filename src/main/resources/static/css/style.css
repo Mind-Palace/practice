@@ -16,3 +16,14 @@ label {
     font-weight: bold;
 }
 
+.error {
+    font-weight: bold;
+}
+
+.errorPage {
+    text-align: center;
+}
+
+.oops {
+    font-size: 76pt;
+}
