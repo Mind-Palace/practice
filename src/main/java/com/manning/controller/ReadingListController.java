@@ -1,6 +1,7 @@
 package com.manning.controller;
 
 import com.manning.model.Book;
+import com.manning.model.Reader;
 import com.manning.repository.ReadingListRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +15,6 @@ import java.util.List;
 @RequestMapping("/")
 public class ReadingListController {
 
-    private static final String reader = "insung park";
-
     private ReadingListRepository readingListRepository;
 
     @Autowired
@@ -24,16 +23,17 @@ public class ReadingListController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String readersBooks(Model model) {
+    public String readersBooks(Reader reader, Model model) {
         List<Book> readingList = readingListRepository.findByReader(reader);
         if (readingList != null) {
             model.addAttribute("books", readingList);
+            model.addAttribute("reader", reader);
         }
         return "readingList";
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String addToReadingList(Book book) {
+    public String addToReadingList(Reader reader, Book book) {
         book.setReader(reader);
         readingListRepository.save(book);
         return "redirect:/";
