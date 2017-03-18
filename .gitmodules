@@ -1,0 +1,4 @@
+[submodule "practice"]
+	path = practice
+	url = https://github.com/magarage/practice
+	branch = Functional_Programming_Principles_in_Scala
